@@ -1,2 +1,11 @@
-<h1>Restaurants#index</h1>
-<p>Find me in app/views/restaurants/index.html.erb</p>
+<h1> Resbook </h1>
+
+<% @restaurant.each do |restaurant| %>
+<h2><%= link_to restaurant.name, restaurant %></h2>
+<p> <%= restaurant.description %> </p>
+<p> <%= link_to "Edit", edit_restaurant_path(restaurant) %> | 
+<%= link_to "Deleted", restaurant, :confirm => "Are you sure?", :method => :delete %>
+</p>
+<hr />
+<% end %> 
+<p><%= link_to "Add new restaurant", new_restaurant_path %></p>
