@@ -28,7 +28,7 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
 	
-    	if @restaurant.update_attributes(params[:restaurant]) 
+    	if @restaurant.update_attributes(restaurant_params) 
     		redirect_to restaurants_path, :notice => "The restaurant's info has been actualized"
     	else
     		render "edit"
@@ -41,4 +41,9 @@ class RestaurantsController < ApplicationController
     	redirect_to restaurants_path, :notice => "Your restaurant has been deleted"
      
   end
+  
+  private
+    def restaurant_params
+      params.require(:restaurant).permit(:name, :description, :address, :phone)
+    end 
 end
